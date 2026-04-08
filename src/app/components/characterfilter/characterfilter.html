@@ -1,1 +1,21 @@
-<p>characterfilter works!</p>
+<div class="filter-page">
+  <h2>Filter Characters by House</h2>
+
+  <select (change)="filterByHouse($event)">
+    <option value="">All</option>
+    <option value="Gryffindor">Gryffindor</option>
+    <option value="Slytherin">Slytherin</option>
+    <option value="Ravenclaw">Ravenclaw</option>
+    <option value="Hufflepuff">Hufflepuff</option>
+  </select>
+
+  <div class="grid">
+    @for (character of filteredCharacters(); track character.id) {
+      <div class="card">
+        <img [src]="character.image" />
+        <h3>{{ character.name }}</h3>
+        <p>{{ character.house }}</p>
+      </div>
+    }
+  </div>
+</div>

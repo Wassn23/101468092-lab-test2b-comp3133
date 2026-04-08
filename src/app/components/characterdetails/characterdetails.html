@@ -1,1 +1,48 @@
-<p>characterdetails works!</p>
+<div class="details-page">
+  <a routerLink="/" class="back-link">← Back to Characters</a>
+
+  @if (loading()) {
+    <p class="status">Loading character details...</p>
+  }
+
+  @if (error()) {
+    <p class="status error">{{ error() }}</p>
+  }
+
+  @if (!loading() && character()) {
+    <div class="details-card">
+      
+      <div class="image-section">
+        @if (character()!.image) {
+          <img [src]="character()!.image" [alt]="character()!.name" />
+        } @else {
+          <div class="no-image">No Image</div>
+        }
+      </div>
+
+      <div class="info-section">
+        <h1>{{ character()!.name }}</h1>
+
+        <p><strong>Species:</strong> {{ character()!.species || 'Unknown' }}</p>
+        <p><strong>House:</strong> {{ character()!.house || 'No House' }}</p>
+
+        @if (character()!.wizard) {
+          <p><strong>Wizard:</strong> Yes</p>
+        } @else {
+          <p><strong>Wizard:</strong> No</p>
+        }
+
+        <p><strong>Ancestry:</strong> {{ character()!.ancestry || 'Unknown' }}</p>
+        <p><strong>Actor:</strong> {{ character()!.actor || 'Unknown' }}</p>
+
+        <div class="wand-box">
+          <h3>Wand</h3>
+          <p><strong>Wood:</strong> {{ character()!.wand?.wood || 'Unknown' }}</p>
+          <p><strong>Core:</strong> {{ character()!.wand?.core || 'Unknown' }}</p>
+          <p><strong>Length:</strong> {{ character()!.wand?.length ?? 'Unknown' }}</p>
+        </div>
+
+      </div>
+    </div>
+  }
+</div>

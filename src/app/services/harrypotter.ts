@@ -17,13 +17,13 @@ export class HarrypotterService {
     return this.http.get<Character[]>(`${this.baseUrl}/characters`);
   }
 
-  // Get characters by house
+  
   getCharactersByHouse(house: string): Observable<Character[]> {
     return this.http.get<Character[]>(`${this.baseUrl}/characters/house/${house}`);
   }
 
-  // Get character by ID
-  getCharacterById(id: string): Observable<Character> {
-    return this.http.get<Character>(`${this.baseUrl}/character/${id}`);
-  }
+getCharacterById(id: string): Observable<Character[]> {
+  return this.http.get<Character[]>(`${this.baseUrl}/character/${id}`);
+}
+
 }

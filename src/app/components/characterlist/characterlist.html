@@ -1,1 +1,35 @@
-<p>characterlist works!</p>
+<div class="page">
+  <div class="header">
+    <h1>Harry Potter Characters</h1>
+    <a routerLink="/filter" class="filter-link">Filter by House</a>
+  </div>
+
+  @if (loading()) {
+    <p class="status">Loading characters...</p>
+  }
+
+  @if (error()) {
+    <p class="status error">{{ error() }}</p>
+  }
+
+  @if (!loading() && !error()) {
+    <div class="grid">
+      @for (character of characters(); track character.id) {
+        <a class="card-link" [routerLink]="['/character', character.id]">
+          <div class="card">
+            @if (character.image) {
+              <img [src]="character.image" [alt]="character.name" />
+            } @else {
+              <div class="no-image">No Image</div>
+            }
+
+            <div class="card-body">
+              <h3>{{ character.name }}</h3>
+              <p>{{ character.house || 'No House' }}</p>
+            </div>
+          </div>
+        </a>
+      }
+    </div>
+  }
+</div>
